@@ -9,4 +9,4 @@
 *.json
 old
 *kubeconfig*
-ce_k8s.yaml
+ce_k8s_cluster.yaml
