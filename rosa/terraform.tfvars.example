@@ -1,0 +1,11 @@
+project_prefix      = "prefix"
+cluster_name        = "rosa1"
+owner               = "user@email"
+aws_access_key      = "..."
+aws_secret_key      = "..."
+
+aws_region          = "eu-north-1"
+openshift_version   = "4.10.63"
+replicas            = 3
+
+cluster_admin_password = "..."
