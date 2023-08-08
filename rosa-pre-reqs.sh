@@ -22,5 +22,5 @@ echo ""
 echo "list user-role"
 rosa list user-role
 echo ""
-echo "list account-roles"
+echo "list account-roles (requires ControlPlane, Installer, Support and Worker Roles)"
 rosa list account-roles

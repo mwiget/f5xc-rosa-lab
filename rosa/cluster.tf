@@ -1,5 +1,4 @@
 resource "terraform_data" "cluster" {
-  depends_on = [ terraform_data.reqs ]
   input = format("%s-%s", var.project_prefix, var.cluster_name)
 
   provisioner "local-exec" {
