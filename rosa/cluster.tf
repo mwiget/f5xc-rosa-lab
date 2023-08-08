@@ -6,6 +6,8 @@ resource "terraform_data" "cluster" {
     command = <<-EOT
       rosa create cluster \
         --sts \
+        --mode auto --yes \
+        --watch \
         --cluster-name ${self.input} \
         --version ${var.openshift_version} \
         --role-arn ${data.aws_iam_role.Installer.arn} \
@@ -19,45 +21,16 @@ resource "terraform_data" "cluster" {
         --machine-cidr "10.0.0.0/16" \
         --service-cidr "172.30.0.0/16" \
         --pod-cidr "10.128.0.0/14" \
-        --host-prefix 23 \
-        --watch
+        --host-prefix 23
     EOT
   }
 
   provisioner "local-exec" {
     when    = destroy
-    command = "rosa delete cluster --cluster ${self.output}"
+    command = "rosa delete cluster --cluster ${self.output} --yes --watch"
   }
 }
 
-resource "terraform_data" "operator-roles" {
-  depends_on = [ terraform_data.cluster ]
-  input = format("%s-%s", var.project_prefix, var.cluster_name)
-
-  provisioner "local-exec" {
-    command = "rosa create operator-roles --cluster ${self.input} --mode auto --yes"
-  }
-
-  provisioner "local-exec" {
-    when    = destroy
-    command = "rosa delete operator-roles --cluster ${self.output} --mode auto --yes"
-  }
-}
-
-resource "terraform_data" "oidc-provider" {
-  depends_on = [ terraform_data.cluster ]
-  input = format("%s-%s", var.project_prefix, var.cluster_name)
-
-  provisioner "local-exec" {
-    command = "rosa create oidc-provider --cluster ${self.input} --mode auto --yes"
-  }
-
-  provisioner "local-exec" {
-    when    = destroy
-    command = "rosa delete oidc-provider --cluster ${self.output} --mode auto --yes"
-  }
-}
- 
 resource "terraform_data" "cluster-ready" {
   depends_on = [ terraform_data.cluster ]
   input = format("%s-%s", var.project_prefix, var.cluster_name)
@@ -88,8 +61,7 @@ resource "terraform_data" "oc-login" {
   triggers_replace = [ timestamp() ]
 
   provisioner "local-exec" {
-    command = "oc login `rosa describe cluster --cluster ${self.input} --output json | jq -r '.api.url'` --username cluster-admin --password ${var.cluster_admin_password}"
+    command = "until oc login `rosa describe cluster --cluster ${self.input} --output json | jq -r '.api.url'` --username cluster-admin --password ${var.cluster_admin_password}; do echo 'waiting for cluster-admin to be ready ...' && sleep 60; done"
   }
 }
-
 
