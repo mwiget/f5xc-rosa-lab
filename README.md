@@ -1,5 +1,3 @@
-#f5xc-rosa-lab
-
 ## Overview
 
 Deploy [F5 XC Kubernetes Site](https://docs.cloud.f5.com/docs/how-to/site-management/create-k8s-site) 
