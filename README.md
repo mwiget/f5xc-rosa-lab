@@ -1,7 +1,8 @@
 ## Overview
 
 Deploy [F5 XC Kubernetes Site](https://docs.cloud.f5.com/docs/how-to/site-management/create-k8s-site) 
-on [Red Hat OpenShift Service on AWS (ROSA)](https://aws.amazon.com/rosa/) with Terraform. 
+on [Red Hat OpenShift Service on AWS (ROSA)](https://aws.amazon.com/rosa/) with Terraform. Optionally
+deploy a demo httpd pod to the Internet via F5 XC.
 
 This repo contains two seperate Terraform projects:
 
@@ -20,6 +21,11 @@ This repo contains two seperate Terraform projects:
 
     This creates a F5 XC site token and deploys a customized version of [ce_k8s.yml](https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml) with 3 replicas, accepts the registrations and waits for the site to be online.
     Once complete, the deployed pods in ves-sytem can be listed using `oc get pods -n ves-system`.
+
+3. Deploy f5-demo-httpd pod on the cluster and publish it on the Internet: Folder [f5_demo_httpd](f5_demo_httpd)
+
+    This requires an existing delegated domain present in your F5 XC tenant, which the chosen FQDN is a subomdain.
+    See [Domain Delegation](https://docs.cloud.f5.com/docs/how-to/app-networking/domain-delegation) for details.
 
 ## Resources
 
