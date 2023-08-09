@@ -8,8 +8,6 @@ echo ""
 echo "Query rosa version:"
 rosa version
 echo ""
-rosa completion bash > /etc/bash_completion.d/rosa
-echo ""
 echo "Verify if you are logged in successfully and check your credentials:"
 rosa whoami
 echo ""
