@@ -16,7 +16,7 @@ This repo contains two seperate Terraform projects:
     [Red Hat OpenShift Service on AWS (ROSA) CLI, `rosa`](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa_getting_started_iam/rosa-installing-rosa.html) and also requires the OpenShift CLI, `oc`, installed.
 
     The user `cluster-admin` is created and used to log into the cluster (storing kubeconfig in ~/.kube/config) and 
-   400 2M Hugepages are automatically assigned to worker nodes as a final step of the ROSA deployment. 
+   [400 2M Hugepages](rosa/hugepages-tuned-bootime.yaml) are automatically assigned to worker nodes as a final step of the ROSA deployment. 
 
 2. Deploy redundant F5 XC Kubernetes Site (as a Pod) on the ROSA cluster: Folder [ce_k8s](ce_k8s)
 
