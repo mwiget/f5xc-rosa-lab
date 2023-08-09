@@ -23,9 +23,9 @@ This repo contains two seperate Terraform projects:
     This creates a F5 XC site token and deploys a customized version of [ce_k8s.yml](https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml) with 3 replicas, accepts the registrations and waits for the site to be online.
     Once complete, the deployed pods in ves-sytem can be listed using `oc get pods -n ves-system`.
 
-##Resources
+## Resources
 
-(https://docs.openshift.com/rosa/rosa_architecture/rosa-understanding.html)
+[Red Hat OpenShift Understanding ROSA](https://docs.openshift.com/rosa/rosa_architecture/rosa-understanding.html)
 
 
 
