@@ -25,7 +25,4 @@ This repo contains two seperate Terraform projects:
 
 ## Resources
 
-[Red Hat OpenShift Understanding ROSA](https://docs.openshift.com/rosa/rosa_architecture/rosa-understanding.html)
-
-
-
+- [Red Hat OpenShift Understanding ROSA](https://docs.openshift.com/rosa/rosa_architecture/rosa-understanding.html)
