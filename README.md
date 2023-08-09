@@ -9,7 +9,7 @@ This repo contains two seperate Terraform projects:
 
 1. [Create a ROSA cluster with STS using customizations](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa-sts-creating-a-cluster-with-customizations.html): Folder [rosa](rosa)
 
-    Before running it, check and fullfill AWS prerequisites according to https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html .
+    Before running it, check and fullfill AWS prerequisites according to https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html.
     The helper script [rosa-pre-reqs.sh](rosa-pre-reqs.sh) can be used to query AWS, particularly for the required
     account roles, which are pulled in as data resource [rosa/iam.tf](rosa/iam.tf). The Terraform manifest is simply 
     a wrapper around the 
