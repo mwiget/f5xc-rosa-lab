@@ -1,9 +1,17 @@
-## f5-demo-httpd deployment
+## HTTPS LB with auto cert via RE
 
 This project creates a [F5 Demo httpd](https://github.com/f5devcentral/f5-demo-httpd)
 deployment on the ROSA cluster in a namespace and publishes it securely via F5 XC load balancer
 to the Internet on the FQDN provided via TF variable.
 
+```
+                 +----------+     +-----------------------+
+                +----------+|     |  ROSA Cluster rosa1   |
+               +----------+||     |                       |
+Internet  ---  | Regional ||+ --- | Service f5-demo-httpd |
+               |   Edge   |+      |     (ClusterIp)       |
+               +----------+       +-----------------------+
+```
 
 To deploy, copy [terraform.tfvars.example](terraform.tfvars.example) to terraform.tfvars and
 set the F5 XC API and Token credentials as well as fqdn, which must be a subdomain of an 

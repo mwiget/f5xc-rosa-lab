@@ -1,6 +1,6 @@
 resource "volterra_http_loadbalancer" "k8s-site-demo" {
   name                            = format("%s-f5-httpd-demo", var.project_prefix)
-  namespace                       = var.namespace
+  namespace                       = local.namespace
   no_challenge                    = true
   domains                         = [var.fqdn]
   advertise_on_public_default_vip = true
@@ -15,7 +15,7 @@ resource "volterra_http_loadbalancer" "k8s-site-demo" {
 
   default_route_pools {
     pool {
-      namespace = var.namespace
+      namespace = local.namespace
       name = volterra_origin_pool.op.name
     }
   }

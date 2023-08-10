@@ -33,7 +33,7 @@ resource "volterra_origin_pool" "op" {
 
   origin_servers {
     k8s_service {
-      service_name  = format("%s.%s", kubernetes_deployment.f5-demo-httpd.metadata[0].name, var.namespace)
+      service_name  = format("%s.%s", kubernetes_deployment.f5-demo-httpd.metadata[0].name, local.namespace)
       vk8s_networks = true
       site_locator {
         site {

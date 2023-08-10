@@ -1,10 +1,10 @@
 resource "volterra_namespace" "ns" {
-  name = var.namespace
+  name = local.namespace
 }
 
 resource "kubernetes_namespace" "ns" {
   metadata {
-    name = var.namespace
+    name = local.namespace
   }
   provider = kubernetes.rosa
 }

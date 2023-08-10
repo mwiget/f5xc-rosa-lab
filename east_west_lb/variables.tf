@@ -29,11 +29,6 @@ variable "f5xc_tenant" {
   type = string
 }
 
-variable "namespace" {
-  type    = string
-  default = "projectX"
-}
-
 variable "owner" {}
 
 variable "replicas" {
