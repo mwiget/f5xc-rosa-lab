@@ -22,11 +22,17 @@ This repo contains two seperate Terraform projects:
     This creates a F5 XC site token and deploys a customized version of [ce_k8s.yml](https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml) with 3 replicas, accepts the registrations and waits for the site to be online.
     Once complete, the deployed pods in ves-sytem can be listed using `oc get pods -n ves-system`.
 
-3. Deploy f5-demo-httpd pod on the cluster and publish it on the Internet: Folder [f5_demo_httpd](f5_demo_httpd)
+3. Deploy HTTPS LB with auto cert via RE for f5-demo-httpd pod on the cluster and publish it on the Internet: Folder [https_lb_re](https_lb_re)
 
     This requires an existing delegated domain present in your F5 XC tenant, which the chosen FQDN is a subomdain.
     See [Domain Delegation](https://docs.cloud.f5.com/docs/how-to/app-networking/domain-delegation) for details.
 
+4. Deploy f5-demo-httpd on the cluster and publish it via Openshift ingress operator to the Internet: Folder [east_west_lb](east_west_lb)
+
+    No prerequisites regarding delegated domain, as the service is published at <service_name>.apps.<cluster_name>.*.p1.openshiftapps.com.
+
+
 ## Resources
 
 - [Red Hat OpenShift Understanding ROSA](https://docs.openshift.com/rosa/rosa_architecture/rosa-understanding.html)
+- [How to deploy a web service on OpenShift](https://www.redhat.com/sysadmin/deploy-web-service-openshift)

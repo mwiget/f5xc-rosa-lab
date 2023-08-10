@@ -20,7 +20,7 @@ resource "terraform_data" "cluster" {
         --machine-cidr "10.0.0.0/16" \
         --service-cidr "172.30.0.0/16" \
         --pod-cidr "10.128.0.0/14" \
-        --host-prefix 23
+        --host-prefix 23 ||  rosa logs install -c ${self.input}--watch
     EOT
   }
 
