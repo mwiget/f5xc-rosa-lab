@@ -49,7 +49,7 @@ resource "terraform_data" "cluster-admin" {
 
   provisioner "local-exec" {
     when    = destroy
-    command = "rosa delete admin --cluster ${self.output} --yes"
+    command = "rosa delete admin --cluster ${self.output} --yes || true"
   }
 }
 
