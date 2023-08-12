@@ -1,7 +1,7 @@
 resource "kubernetes_deployment" "f5-demo-httpd" {
   metadata {
     name = "f5-demo-httpd"
-    namespace = kubernetes_namespace.ns.id
+    namespace = kubernetes_namespace.frontend.id
     labels = {
       app = "f5-demo-httpd"
     }
@@ -25,7 +25,7 @@ resource "kubernetes_deployment" "f5-demo-httpd" {
 
       spec {
         container {
-          image = "f5devcentral/f5-demo-httpd:openshift"
+          image = "marcelwiget/f5-demo-httpd:openshift" # https://github.com/f5devcentral/f5-demo-httpd/pull/4
           name  = "f5-demo-httpd"
 
           liveness_probe {
@@ -45,7 +45,11 @@ resource "kubernetes_deployment" "f5-demo-httpd" {
 
           env {
             name    = "F5DEMO_APP"
-            value   = "website"
+            value   = "frontend"
+          }
+          env {
+            name    = "F5DEMO_BACKEND_URL"
+            value   = format("http://backend.%s/backend.shtml", local.namespace_f5xc)
           }
           env {
             name    = "F5DEMO_NODENAME"
@@ -65,7 +69,7 @@ resource "kubernetes_deployment" "f5-demo-httpd" {
 resource "kubernetes_service" "ks" {
   metadata {
     name = "f5-demo-httpd"
-    namespace = kubernetes_namespace.ns.id
+    namespace = kubernetes_namespace.frontend.id
   }
   spec {
     selector = {
@@ -87,7 +91,7 @@ resource "terraform_data" "route" {
 
   input = {
     service_name = kubernetes_service.ks.metadata[0].name
-    namespace    = local.namespace
+    namespace    = local.namespace_frontend
   }
 
   provisioner "local-exec" {
@@ -102,4 +106,7 @@ resource "terraform_data" "route" {
 
 output "service_name" {
   value = kubernetes_service.ks.metadata[0].name
+}
+output "backend_service_name" {
+  value = kubernetes_service.backend.metadata[0].name
 }

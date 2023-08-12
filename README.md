@@ -27,7 +27,9 @@ This repo contains two seperate Terraform projects:
     This requires an existing delegated domain present in your F5 XC tenant, which the chosen FQDN is a subomdain.
     See [Domain Delegation](https://docs.cloud.f5.com/docs/how-to/app-networking/domain-delegation) for details.
 
-4. Deploy f5-demo-httpd on the cluster and publish it via Openshift ingress operator to the Internet: Folder [east_west_lb](east_west_lb)
+4. Deploy f5-demo-httpd on the cluster as frontend and backend (separate namespaces) and publish frontend via Openshift 
+ingress operator to the Internet: Folder [east_west_lb](east_west_lb). Backend service is connected to frontend via F5 XC
+LB/origin pool.
 
     No prerequisites regarding delegated domain, as the service is published at <service_name>.apps.<cluster_name>.*.p1.openshiftapps.com.
 
