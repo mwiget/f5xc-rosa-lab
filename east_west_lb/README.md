@@ -21,6 +21,9 @@ To reach backend service use
 
 https://f5-demo-httpd-<prefix>-east-west.apps.<prefix>-<cluster_name>.*.p1.openshiftapps.com/backend/
 
+This will generate a logged request in F5 XC:
+
+![east-west-lb-request](../images/east-west-request.jpg)
 
 (Script [validate.sh](./validate.sh) extracts the actual URL and uses it for validation)
 
