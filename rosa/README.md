@@ -12,7 +12,7 @@ The manifest then waits for the cluster to be ready and creates the cluster-admi
 
 To get started, check and fullfill AWS prerequisites according to 
 https://docs.openshift.com/rosa/rosa_planning/rosa-sts-aws-prereqs.html.
-The helper script [rosa-pre-reqs.sh](rosa-pre-reqs.sh) can be used to query AWS, particularly for the required
+The helper script [rosa-pre-reqs.sh](../rosa-pre-reqs.sh) can be used to query AWS, particularly for the required
 account roles, which are pulled in as data resource [rosa/iam.tf](rosa/iam.tf). The Terraform manifest is simply 
 a wrapper around the 
 [Red Hat OpenShift Service on AWS (ROSA) CLI, `rosa`](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa_getting_started_iam/rosa-installing-rosa.html) and also requires the OpenShift CLI, `oc`, installed.
