@@ -33,6 +33,31 @@ LB/origin pool.
 
     No prerequisites regarding delegated domain, as the service is published at <service_name>.apps.<cluster_name>.*.p1.openshiftapps.com.
 
+## Deploy via docker
+
+Instead of installing terraform, ROSA and oc binaries locally, a docker container can be built and used to deploy. 
+
+- Build container
+
+```
+docker build -t rosa-terraform .
+```
+
+(or run make, which executes docker bulid)
+
+- Use container
+
+use the shell script [rosa-terraform.sh](rosa-terraform.sh) instead of the terraform binary:
+
+```
+cd rosa
+../rosa-terraform.sh init
+../rosa-terraform.sh plan
+../rosa-terraform.sh apply
+```
+
+It mounts the current directory, allowing read-write access, to maintain terraform state outside the container.
+
 
 ## Resources
 
